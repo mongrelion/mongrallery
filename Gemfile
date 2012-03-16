@@ -14,12 +14,15 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'faker'
+  gem 'pry'
   # gem 'minitest-rails' # Not yet ready for integration with Rails 3.2.x
 end
 
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'fabrication'
   # gem 'minitest-matchers' # Commented out until minitest-rails is ready
   # gem 'shoulda-matchers'  # for integration with edge Rails versions.
 end
