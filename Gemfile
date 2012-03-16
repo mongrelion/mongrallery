@@ -23,6 +23,7 @@ group :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'fabrication'
+  gem 'minitest'
   # gem 'minitest-matchers' # Commented out until minitest-rails is ready
   # gem 'shoulda-matchers'  # for integration with edge Rails versions.
 end
