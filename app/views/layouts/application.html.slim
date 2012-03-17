@@ -1,0 +1,27 @@
+doctype 5
+html
+  head
+    title Mongrallery
+    = csrf_meta_tag
+    / Le styles
+    = stylesheet_link_tag 'application'
+
+    / Le javascripts
+    = javascript_include_tag 'application'
+    = yield :head
+
+  body class=controller_name
+    / Top Navigation bar
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          div           = link_to 'Mongrallery', root_path, class: 'brand'
+          .nav-collapse = render 'shared/topbar'
+          .pull-right   = session_links
+
+    .container
+      / Body content
+      = flash_messages
+      .hero-unit= yield
+      footer
+        p &copy; mongrelion 2012
