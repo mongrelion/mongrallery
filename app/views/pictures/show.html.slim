@@ -1,0 +1,15 @@
+p
+  strong Pic:
+  = @picture.pic
+p
+  strong Caption:
+  = @picture.caption
+
+- if @picture.album
+  p
+    strong Album:
+    = @picture.album.name
+
+= link_to 'Edit', edit_picture_path(@picture), class: 'btn btn-info'
+= link_to 'Delete', @picture, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure you want to delete this picture?'
+= link_to 'Back', pictures_path, class: 'btn'
