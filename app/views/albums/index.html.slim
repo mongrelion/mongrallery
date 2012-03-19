@@ -1,0 +1,21 @@
+h1 Listing albums
+
+table.table
+  tr
+    th Name
+    th Public
+    th
+    th
+    th
+
+  - @albums.each do |album|
+    tr
+      td = album.name
+      td = album.public
+      td = link_to 'Show', album
+      td = link_to 'Edit', edit_album_path(album)
+      td = link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete
+
+br
+
+= link_to 'New Album', new_album_path

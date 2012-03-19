@@ -1,0 +1,10 @@
+p
+  strong Name
+  = @album.name
+p
+  strong Description:
+  = @album.description
+
+= link_to 'Edit', edit_album_path(@album), class: 'btn btn-info'
+= link_to 'Delete', @album, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure you want to delete this album? This will also delete all its pictures?'
+= link_to 'Back', albums_path, class: 'btn'
