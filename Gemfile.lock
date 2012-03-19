@@ -42,6 +42,8 @@ GEM
     capybara-webkit (0.10.1)
       capybara (>= 1.0.0, < 1.2)
       json
+    carrierwave (0.5.8)
+      activesupport (~> 3.0)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     coderay (1.0.5)
@@ -168,6 +170,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   capybara-webkit
+  carrierwave
   coffee-rails (~> 3.2.1)
   database_cleaner
   devise

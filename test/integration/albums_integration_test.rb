@@ -41,11 +41,18 @@ describe 'Albums integration' do
   end
 
   describe 'Delete an album' do
-    it 'takes the user to the albums list' do
+    before do
       login
       album = Fabricate(:album)
       visit album_path(album)
       click_on 'Delete'
+    end
+
+    it 'takes the user to the albums list' do
+      page.text.must_include 'Album was successfully destroyed.'
+    end
+
+    it 'shows a feedback message' do
       page.text.must_include 'Album was successfully destroyed.'
     end
   end
