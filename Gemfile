@@ -1,14 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
+gem 'sqlite3', platforms: :ruby
 gem 'devise'
 gem 'slim-rails'
 gem 'inherited_resources'
 gem 'draper'
 gem 'carrierwave'
 gem 'mini_magick'
+
+platform :jruby do
+  gem 'jruby-openssl'
+  gem 'activerecord-jdbcsqlite3-adapter'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,7 +27,6 @@ group :test, :development do
   gem 'faker'
   gem 'pry'
   gem 'database_cleaner'
-  # gem 'minitest-rails' # Not yet ready for integration with Rails 3.2.x
 end
 
 group :test do
@@ -31,6 +35,8 @@ group :test do
   gem 'fabrication'
   gem 'launchy'
   gem 'minitest'
-  # gem 'minitest-matchers' # Commented out until minitest-rails is ready
-  # gem 'shoulda-matchers'  # for integration with edge Rails versions.
+end
+
+group :production do
+  gem 'puma'
 end
