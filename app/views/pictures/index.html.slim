@@ -1,6 +1,9 @@
 .well
   h1 Listing pictures
-= new_picture_link
+
+- if current_admin?
+  = new_picture_link
+
 - if @pictures.any?
   ul.thumbnails
     - @pictures.each do |picture|

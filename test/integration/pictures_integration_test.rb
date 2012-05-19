@@ -1,6 +1,25 @@
 require 'minitest_helper'
 
 describe 'Pictures integration' do
+  describe 'List' do
+    it 'does not show "New Picture" button when no user is signed in' do
+      menu_click_on 'Pictures'
+      page.text.wont_include 'New Picture'
+    end
+
+    it 'does not show the "New Picture" button when the current user is not admin' do
+      login
+      menu_click_on 'Pictures'
+      page.text.wont_include 'New Picture'
+    end
+
+    it 'shows the "New Picture" button when the current user is admin' do
+      login Fabricate(:admin)
+      menu_click_on 'Pictures'
+      page.text.must_include 'New Picture'
+    end
+  end
+
   describe 'Create a new picture' do
     before do
       login Fabricate(:admin)
