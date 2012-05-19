@@ -18,6 +18,9 @@ describe 'Pictures integration' do
       menu_click_on 'Pictures'
       page.text.must_include 'New Picture'
     end
+
+    it 'doesn not show action links for pictures when there is no logged in user'
+    it 'doesn not show action links for pictures when the logged in user is not an admin'
   end
 
   describe 'Create a new picture' do

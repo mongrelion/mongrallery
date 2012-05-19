@@ -1,5 +1,11 @@
-.well
-  h1 Albums
+ul.breadcrumb
+  li
+    = link_to 'Home', root_path
+    span.divider >
+  li Albums
+
+- if current_admin?
+  p.pull-right = new_link new_album_path, 'New Album'
 
 table.table.table-striped.table-bordered
   tr
@@ -16,7 +22,3 @@ table.table.table-striped.table-bordered
       td = link_to 'Show', album
       td = link_to 'Edit', edit_album_path(album)
       td = link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete
-
-br
-
-= link_to 'New Album', new_album_path

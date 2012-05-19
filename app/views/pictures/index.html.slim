@@ -1,8 +1,14 @@
-.well
-  h1 Listing pictures
+ul.breadcrumb
+  li
+    = link_to 'Home', root_path
+    span.divider >
+
+  li Pictures
 
 - if current_admin?
-  = new_picture_link
+  .pull-right = new_picture_link
+
+.clearfix
 
 - if @pictures.any?
   ul.thumbnails
@@ -13,4 +19,5 @@
           = link_to image_tag(picture.pic.url(:thumb), size: '260x180'), picture, title: picture_caption(picture)
           - if current_admin?
             .caption
-              = picture_action_links picture
+              = edit_link(edit_picture_path(picture))
+              = destroy_link(picture)

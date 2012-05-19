@@ -3,7 +3,7 @@ DatabaseCleaner.clean
 puts 'Database cleaned!'
 
 user = User.new(
-  name:                 'Homer J. Simpson',
+  name:                  'Homer J. Simpson',
   email:                 'homer@thesimpsons.com',
   password:              's3cr3t',
   password_confirmation: 's3cr3t'

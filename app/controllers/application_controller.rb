@@ -9,8 +9,7 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless current_admin?
-      flash[:warning] = 'Access restricted.'
-      redirect_to root_path
+      redirect_to root_path, alert: 'Access restricted.'
     end
   end
 end

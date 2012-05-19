@@ -1,15 +1,25 @@
-p
-  strong Pic:
-  = link_to image_tag(@picture.pic.thumb.url), @picture.pic.url
-p
-  strong Caption:
-  = @picture.caption
+ul.breadcrumb
+  li
+    = link_to 'Home', root_path
+    span.divider >
+
+  li
+    = link_to 'Pictures', pictures_path
+    span.divider >
+
+  li = @picture.id
+
+.well
+  i = picture_caption @picture
+
+p = link_to image_tag(@picture.pic.url), @picture.pic.url
 
 - if @picture.album
   p
     strong Album:
     = @picture.album.name
 
-= link_to 'Edit', edit_picture_path(@picture), class: 'btn btn-info'
-= link_to 'Delete', @picture, class: 'btn btn-danger', method: :delete, confirm: 'Are you sure you want to delete this picture?'
-= link_to 'Back', pictures_path, class: 'btn'
+- if current_admin?
+  = edit_link edit_picture_path(@picture)
+  = destroy_link @picture, 'Delete'
+= back_link pictures_path

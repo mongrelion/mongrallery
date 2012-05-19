@@ -25,6 +25,31 @@ module ApplicationHelper
     end.join.html_safe
   end
 
+  def new_link(url, text = 'New', _options = {})
+    options = {
+      class: 'btn btn-small'
+    }.merge _options
+    link_to url, options do
+      raw(
+        content_tag(:span, '', class: get_black_icon_class(:new)) +
+        content_tag(:span, text)
+      )
+    end
+  end
+
+  def back_link(url, text = 'Back', _options = {})
+    url ||= :back
+    options = {
+      class: 'btn btn-small'
+    }.merge _options
+    link_to url, options do
+      raw(
+        content_tag(:span, '', class: get_black_icon_class(:back)) +
+        content_tag(:span, text)
+      )
+    end
+  end
+
   def show_link(url, _options = {})
     options = {}.merge _options
   end
@@ -73,6 +98,10 @@ module ApplicationHelper
         'icon-edit'
       when :destroy
         'icon-trash'
+      when :back
+        'icon-circle-arrow-left'
+      when :new
+        'icon-file'
       else
         'icon-ban-circle'
       end
