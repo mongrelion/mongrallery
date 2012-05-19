@@ -10,4 +10,9 @@ class Album < ActiveRecord::Base
 
   # - Validations - #
   validates_presence_of :name
+
+  # - Instance Methods - #
+  def is_public?
+    public?
+  end
 end

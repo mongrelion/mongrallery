@@ -38,4 +38,11 @@ describe Album do
     Album.public.must_include public_album
     Album.public.wont_include private_album
   end
+
+  it 'knows when it is public' do
+    public_album  = Album.new public: true
+    private_album = Album.new public: false
+    public_album.is_public?.must_equal true
+    private_album.is_public?.must_equal false
+  end
 end

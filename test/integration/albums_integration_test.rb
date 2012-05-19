@@ -48,6 +48,12 @@ describe 'Albums integration' do
   end
 
   describe 'Show an album' do
+    it 'does not allow to access a private album to a guest user by any meanings' do
+      private_album = Fabricate(:private_album)
+      visit album_path private_album
+      page.text.must_include "The page you were looking for doesn't exist"
+    end
+
     it 'does not show the action buttons when the user is not logged in'
     it 'does not show the action buttons when the logged in user is not an admin'
     it 'shows the action buttons when the logged in user is an admin'
