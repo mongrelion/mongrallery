@@ -9,8 +9,7 @@ development:
 
 test:
   <<: *common
-#database: db/test.sqlite3
-  database: ':memory:'
+  database: db/test.sqlite3
 
 production:
   <<: *common
