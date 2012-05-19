@@ -24,4 +24,11 @@ describe Album do
     album = Album.new
     album.public.must_equal true
   end
+
+  it 'sorts albums by name in ascendent order by default' do
+    %w[ Oranges Strawberries Lemons Kiwis ].each do |name|
+      Album.create name: name
+    end
+    Album.all.map(&:name).must_equal %w[ Kiwis Lemons Oranges Strawberries ]
+  end
 end

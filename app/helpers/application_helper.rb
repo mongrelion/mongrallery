@@ -25,4 +25,57 @@ module ApplicationHelper
     end.join.html_safe
   end
 
+  def show_link(url, _options = {})
+    options = {}.merge _options
+  end
+
+  def edit_link(url, text = 'Edit', _options = {})
+    options = {
+      class: 'btn btn-small btn-inverse'
+    }.merge _options
+    link_to url, options do
+      raw(
+        content_tag(:span, '', class: get_white_icon_class(:edit)) +
+        content_tag(:span, text)
+      )
+    end
+  end
+
+  def destroy_link(url, text = 'Destroy', _options = {})
+    options = {
+      class: 'btn btn-small btn-danger',
+      method: :delete,
+      confirm: 'Are you sure?'
+    }.merge _options
+    link_to url, options do
+      raw(
+        content_tag(:span, '', class: get_white_icon_class(:destroy)) +
+        content_tag(:span, text)
+      )
+    end
+  end
+
+  private
+
+    def get_white_icon_class(icon)
+      "iconfix icon-white #{get_icon_class icon}"
+    end
+
+    def get_black_icon_class(icon)
+      "iconfix #{get_icon_class icon}"
+    end
+
+    def get_icon_class(icon)
+      case icon
+      when :new_picture
+        'icon-picture'
+      when :edit
+        'icon-edit'
+      when :destroy
+        'icon-trash'
+      else
+        'icon-ban-circle'
+      end
+    end
+
 end

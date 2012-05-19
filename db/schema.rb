@@ -23,11 +23,14 @@ ActiveRecord::Schema.define(:version => 20120319010601) do
 
   create_table "pictures", :force => true do |t|
     t.string   "pic"
+    t.string   "slug"
     t.text     "caption"
     t.integer  "album_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "pictures", ["slug"], :name => "index_pictures_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "name"

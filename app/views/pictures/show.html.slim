@@ -1,6 +1,6 @@
 p
   strong Pic:
-  = @picture.pic
+  = link_to image_tag(@picture.pic.thumb.url), @picture.pic.url
 p
   strong Caption:
   = @picture.caption

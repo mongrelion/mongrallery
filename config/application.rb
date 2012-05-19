@@ -60,6 +60,9 @@ module Mongrallery
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # Update assets paths
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
+
     # Generators
     config.generators do |g|
       g.test_framework      :mini_test, fixture_replacement: :fabrication

@@ -3,13 +3,13 @@ require 'minitest_helper'
 describe 'Pictures integration' do
   describe 'Create a new picture' do
     before do
-      login
+      login Fabricate(:admin)
       Fabricate(:album, name: 'Puerto Colombia')
-      click_on 'Pictures'
+      menu_click_on 'Pictures'
       click_on 'New Picture'
     end
 
-    it 'is created by giving the required fields' do
+    it 'is created given the required information' do
       image = File.join Rails.root, 'test', 'support', 'files', 'sunset.jpg'
       attach_file 'Picture', image
       select 'Puerto Colombia', from: 'Album'
@@ -29,7 +29,7 @@ describe 'Pictures integration' do
 
   describe 'Edit a picture' do
     before do
-      login
+      login Fabricate(:admin)
       visit edit_picture_path(Fabricate(:picture))
     end
 
@@ -51,7 +51,7 @@ describe 'Pictures integration' do
 
   describe 'Delete a picture' do
     before do
-      login
+      login Fabricate(:admin)
       visit picture_path(Fabricate(:picture))
       click_on 'Delete'
     end

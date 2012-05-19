@@ -8,8 +8,11 @@
 
   - if 'new' == action_name
     .field
+      - if @picture.pic?
+        = image_tag @picture.pic_url
       = f.label :pic, 'Picture'
       = f.file_field :pic
+      = f.hidden_field :pic_cache
 
   .field
     = f.label :album_id

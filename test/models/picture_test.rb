@@ -27,6 +27,16 @@ describe Picture do
     Picture.orphan.must_equal orphan_pictures
   end
 
+  # - Callbacks - #
+  it 'generates its 32 characters length slug when being created' do
+    picture = Fabricate.build :picture
+    picture.slug.blank?.must_equal true
+    picture.save!
+    picture.slug.blank?.must_equal false
+    picture.slug.must_be_instance_of String
+    picture.slug.length.must_equal 32
+  end
+
   # - Instance Methods - #
   it "knows when it is an orphan" do
     picture = Fabricate(:picture, album: nil)

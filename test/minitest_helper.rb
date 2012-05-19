@@ -1,4 +1,5 @@
 ENV["RAILS_ENV"] = 'test'
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'minitest/autorun'
 require "minitest/pride"
@@ -29,5 +30,9 @@ class IntegrationTest < MiniTest::Spec
     fill_in 'Password', with: user.password
     click_on 'Sign in'
     page.text.must_include 'Logged in successfully.'
+  end
+
+  def menu_click_on(link)
+    within('ul.nav.menu') { click_link link }
   end
 end

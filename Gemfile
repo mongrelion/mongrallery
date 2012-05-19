@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
+gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'jquery-rails'
 gem 'devise'
 gem 'slim-rails'
-gem 'database_cleaner'
 gem 'inherited_resources'
 gem 'draper'
 gem 'carrierwave'
+gem 'mini_magick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +21,7 @@ end
 group :test, :development do
   gem 'faker'
   gem 'pry'
+  gem 'database_cleaner'
   # gem 'minitest-rails' # Not yet ready for integration with Rails 3.2.x
 end
 

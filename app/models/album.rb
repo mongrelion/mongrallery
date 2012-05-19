@@ -1,4 +1,6 @@
 class Album < ActiveRecord::Base
+  # - Default Scope - #
+  default_scope order: 'name ASC'
   # - Relationships - #
   has_many :pictures
 
