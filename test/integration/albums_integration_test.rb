@@ -29,8 +29,22 @@ describe 'Albums integration' do
       Album.all.each { |a| page.text.must_include a.name }
     end
 
-    it 'does not show private albums to guest users'
-    it 'shows all albums, public and private, when there is a logged in user'
+    it 'does not show private albums to guest users' do
+      5.times { Fabricate(:album)         }
+      3.times { Fabricate(:private_album) }
+      visit root_path
+      click_on 'Albums'
+      page.has_css?('table.albums tbody tr', count: 5).must_equal true
+    end
+
+    it 'shows all albums, public and private, when there is a logged in user' do
+      5.times { Fabricate(:album)         }
+      3.times { Fabricate(:private_album) }
+      login
+      visit root_path
+      click_on 'Albums'
+      page.has_css?('table.albums tbody tr', count: 8).must_equal true
+    end
   end
 
   describe 'Show an album' do

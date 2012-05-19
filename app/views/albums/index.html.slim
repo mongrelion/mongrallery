@@ -7,18 +7,18 @@ ul.breadcrumb
 - if current_admin?
   p.pull-right = new_link new_album_path, 'New Album'
 
-table.table.table-striped.table-bordered
-  tr
-    th Name
-    th Public
-    th
-    th
-    th
-
-  - @albums.each do |album|
+table.albums.table.table-striped.table-bordered
+  thead
     tr
-      td = album.name
-      td = album.public
-      td = link_to 'Show', album
-      td = link_to 'Edit', edit_album_path(album)
-      td = link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @albums.each do |album|
+      tr
+        td = album.name
+        td = link_to 'Show', album
+        td = link_to 'Edit', edit_album_path(album)
+        td = link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete

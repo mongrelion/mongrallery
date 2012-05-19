@@ -31,4 +31,11 @@ describe Album do
     end
     Album.all.map(&:name).must_equal %w[ Kiwis Lemons Oranges Strawberries ]
   end
+
+  it 'knows how to retrieve public albums' do
+    public_album  = Fabricate(:album)
+    private_album = Fabricate(:private_album)
+    Album.public.must_include public_album
+    Album.public.wont_include private_album
+  end
 end
