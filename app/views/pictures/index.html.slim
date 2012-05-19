@@ -7,9 +7,10 @@
 - if @pictures.any?
   ul.thumbnails
     - @pictures.each do |picture|
-      li.span3
+      li.span3.image
+        = hidden_field_tag :title, picture_caption(picture)
         .thumbnail
           = link_to image_tag(picture.pic.url(:thumb), size: '260x180'), picture, title: picture_caption(picture)
-          .caption
-            p = picture_caption picture
-            = picture_action_links picture
+          - if current_admin?
+            .caption
+              = picture_action_links picture

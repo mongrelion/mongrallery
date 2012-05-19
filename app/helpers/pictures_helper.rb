@@ -13,13 +13,11 @@ module PicturesHelper
   end
 
   def picture_action_links(picture)
-    if user_signed_in?
-      content_tag :p do
-        raw(
-          edit_link(edit_picture_path(picture)) +
-          destroy_link(picture)
-        )
-      end
+    content_tag :p do
+      raw(
+        edit_link(edit_picture_path(picture)) +
+        destroy_link(picture)
+      )
     end
   end
 end
