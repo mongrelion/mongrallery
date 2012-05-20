@@ -7,10 +7,16 @@ ul.breadcrumb
     span.divider >
   li = @album.name
 
-.hero-unit
-  p = @album.description
+p.pull-right
+  - if current_admin?
+    = edit_link edit_album_path @album
+    = destroy_link @album, 'Destroy', :confirm => 'Are you sure you want to delete this album? This will also delete all its pictures?'
+  = back_link albums_path
 
-- if current_admin?
-  = edit_link edit_album_path @album
-  = destroy_link @album, 'Destroy', :confirm => 'Are you sure you want to delete this album? This will also delete all its pictures?'
-= back_link albums_path
+.clearfix
+
+.well
+  i = @album.description
+
+- if @album.pictures.any?
+  ul.thumbnails.pictures = render @album.pictures

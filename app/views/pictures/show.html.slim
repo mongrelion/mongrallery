@@ -11,13 +11,11 @@ ul.breadcrumb
 
 .well
   i = picture_caption @picture
+  - if @picture.album
+    p = link_to @picture.album.name, @picture.album
 
 p = link_to image_tag(@picture.pic.url), @picture.pic.url
 
-- if @picture.album
-  p
-    strong Album:
-    = @picture.album.name
 
 - if current_admin?
   = edit_link edit_picture_path(@picture)

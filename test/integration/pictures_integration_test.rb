@@ -1,6 +1,19 @@
 require 'minitest_helper'
 
 describe 'Pictures integration' do
+
+  describe 'Show a picture' do
+    it 'shows a link to the parent album if present' do
+      album = Fabricate(:album, :name => 'Summer 2012')
+      Fabricate(:picture, :album => album)
+      click_on 'Pictures'
+      page.find('ul.pictures li a:first').click
+      page.text.must_include 'Summer 2012'
+      click_on 'Summer 2012'
+      current_path.must_equal album_path(album)
+    end
+  end
+
   describe 'List' do
     it 'does not show "New Picture" button when no user is signed in' do
       menu_click_on 'Pictures'

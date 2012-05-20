@@ -48,6 +48,15 @@ describe 'Albums integration' do
   end
 
   describe 'Show an album' do
+    it 'shows a list of pictures on the album view' do
+      album = Fabricate(:album)
+      5.times { Fabricate(:picture, :album => album) }
+      login
+      click_on 'Albums'
+      page.find('ul.albums li a:first').click
+      page.has_css?('ul.pictures li', :count => 5).must_equal true
+    end
+
     it 'does not allow to access a private album to a guest user by any meanings' do
       private_album = Fabricate(:private_album)
       visit album_path private_album

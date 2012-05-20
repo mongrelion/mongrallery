@@ -1,0 +1,8 @@
+li.span3.image
+  = hidden_field_tag :title, picture_caption(picture)
+  .thumbnail
+    = link_to image_tag(picture.pic.url(:thumb), :size => '120x160'), picture, :title => picture_caption(picture)
+    - if current_admin?
+      .caption
+        = edit_link(edit_picture_path(picture))
+        = destroy_link(picture, 'Destroy', :class => 'btn btn-small btn-danger pull-right')
