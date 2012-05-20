@@ -7,18 +7,17 @@ ul.breadcrumb
 - if current_admin?
   p.pull-right = new_link new_album_path, 'New Album'
 
-table.albums.table.table-striped.table-bordered
-  thead
-    tr
-      th Name
-      th
-      th
-      th
+.clearfix
 
-  tbody
+- if @albums.any?
+  ul.thumbnails.albums
     - @albums.each do |album|
-      tr
-        td = album.name
-        td = link_to 'Show', album
-        td = link_to 'Edit', edit_album_path(album)
-        td = link_to 'Destroy', album, confirm: 'Are you sure?', method: :delete
+      li.span3.image
+        .thumbnail
+          = link_to album_cover(album), album
+          .caption
+            p
+              i.name = album.name
+            - if current_admin?
+              = edit_link(edit_album_path(album))
+              = destroy_link(album, 'Destroy', class: 'btn btn-small btn-danger pull-right')

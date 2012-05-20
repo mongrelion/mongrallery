@@ -26,7 +26,7 @@ describe 'Albums integration' do
     it 'shows public albums' do
       5.times { Fabricate(:album) }
       click_on 'Albums'
-      Album.all.each { |a| page.text.must_include a.name }
+      Album.public.each { |album| page.text.must_include album.name }
     end
 
     it 'does not show private albums to guest users' do
@@ -34,7 +34,7 @@ describe 'Albums integration' do
       3.times { Fabricate(:private_album) }
       visit root_path
       click_on 'Albums'
-      page.has_css?('table.albums tbody tr', count: 5).must_equal true
+      page.has_css?('ul.albums li', count: 5).must_equal true
     end
 
     it 'shows all albums, public and private, when there is a logged in user' do
@@ -43,7 +43,7 @@ describe 'Albums integration' do
       login
       visit root_path
       click_on 'Albums'
-      page.has_css?('table.albums tbody tr', count: 8).must_equal true
+      page.has_css?('ul.albums li', count: 8).must_equal true
     end
   end
 
@@ -54,7 +54,14 @@ describe 'Albums integration' do
       page.text.must_include "The page you were looking for doesn't exist"
     end
 
-    it 'does not show the action buttons when the user is not logged in'
+    it 'does not show the action buttons when the user is not logged in' do
+      Fabricate(:album)
+      visit root_path
+      click_on 'Albums'
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+    end
+
     it 'does not show the action buttons when the logged in user is not an admin'
     it 'shows the action buttons when the logged in user is an admin'
   end
