@@ -2,31 +2,31 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
-gem 'sqlite3', :platforms => :ruby
 gem 'devise'
 gem 'slim-rails'
 gem 'inherited_resources'
-gem 'draper'
 gem 'carrierwave'
 gem 'mini_magick'
-
-platform :jruby do
-  gem 'jruby-openssl'
-  gem 'activerecord-jdbcsqlite3-adapter'
-end
+gem 'jruby-openssl', :platform => :jruby
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier',     '>= 1.0.3'
 end
 
 group :test, :development do
+  gem 'database_cleaner'
   gem 'faker'
   gem 'pry'
-  gem 'database_cleaner'
+  gem 'sqlite3', :platform => :ruby
+  gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
+end
+
+group :development do
+  gem 'foreman'
 end
 
 group :test do
@@ -39,5 +39,6 @@ group :test do
 end
 
 group :production do
-  gem 'puma'
+  gem 'unicorn'
+  gem 'pg'
 end
