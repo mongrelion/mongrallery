@@ -6,7 +6,7 @@ class Picture < ActiveRecord::Base
   validates_presence_of :pic
 
   # - Scopes - #
-  scope :orphan, where(album_id: nil)
+  scope :orphan, where(:album_id => nil)
 
   # - Callbacks - #
   before_create :generate_slug

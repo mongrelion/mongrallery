@@ -65,8 +65,8 @@ module Mongrallery
 
     # Generators
     config.generators do |g|
-      g.test_framework      :mini_test, fixture_replacement: :fabrication
-      g.fixture_replacement :fabrication, dir: 'test/fabricators'
+      g.test_framework      :mini_test,   :fixture_replacement => :fabrication
+      g.fixture_replacement :fabrication, :dir                 => 'test/fabricators'
     end
   end
 end

@@ -2,9 +2,9 @@ require 'minitest_helper'
 
 describe Picture do
   it "validates presence of pic" do
-    picture = Fabricate.build :picture, pic: nil # With no pic
+    picture = Fabricate.build :picture, :pic => nil # With no pic
     picture.valid?.wont_equal true
-    picture = Fabricate.build :picture           # With a pic
+    picture = Fabricate.build :picture              # With a pic
     picture.valid?.must_equal true
   end
 
@@ -22,7 +22,7 @@ describe Picture do
   it "knows how to retrieve orphan a.k.a. albumless pictures" do
     orphan_pictures         = []
     pictures_from_the_house = []
-    3.times { orphan_pictures << Fabricate(:picture, album: nil) }
+    3.times { orphan_pictures << Fabricate(:picture, :album => nil) }
     2.times { pictures_from_the_house << Fabricate(:picture)     }
     Picture.orphan.must_equal orphan_pictures
   end
@@ -39,7 +39,7 @@ describe Picture do
 
   # - Instance Methods - #
   it "knows when it is an orphan" do
-    picture = Fabricate(:picture, album: nil)
+    picture = Fabricate(:picture, :album => nil)
     picture.is_orphan?.must_equal true
   end
 end

@@ -6,6 +6,6 @@ Fabricator(:user) do
   admin                 false
 end
 
-Fabricator(:admin, from: :user) do
+Fabricator(:admin, :from => :user) do
   admin true
 end

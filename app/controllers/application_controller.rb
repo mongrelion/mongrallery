@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless current_admin?
-      redirect_to root_path, alert: 'Access restricted.'
+      redirect_to root_path, :alert => 'Access restricted.'
     end
   end
 
   def render_404
-    render file: "#{Rails.root}/public/404", layout: false, status: 404
+    render :file => "#{Rails.root}/public/404", :layout => false, :status => 404
   end
 end

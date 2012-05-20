@@ -2,7 +2,9 @@ language: ruby
 
 rvm:
   - 1.9.3
+  - jruby-head
   - jruby-19mode
+  - jruby-18mode
 
 before_script:
   - RAILS_ENV=test bundle exec rake db:create db:migrate

@@ -2,7 +2,7 @@ require 'minitest_helper'
 
 describe User do
   it "requires name to be set" do
-    user = Fabricate.build :user, name: nil
+    user = Fabricate.build :user, :name => nil
     user.valid?.wont_equal true
   end
 

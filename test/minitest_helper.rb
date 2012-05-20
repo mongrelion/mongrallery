@@ -26,8 +26,8 @@ class IntegrationTest < MiniTest::Spec
     user ||= Fabricate(:user)
     visit destroy_user_session_path
     visit new_user_session_path
-    fill_in 'Email',    with: user.email
-    fill_in 'Password', with: user.password
+    fill_in 'Email',    :with => user.email
+    fill_in 'Password', :with => user.password
     click_on 'Sign in'
     page.text.must_include 'Logged in successfully.'
   end

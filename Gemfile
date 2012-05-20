@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
-gem 'sqlite3', platforms: :ruby
+gem 'sqlite3', :platforms => :ruby
 gem 'devise'
 gem 'slim-rails'
 gem 'inherited_resources'

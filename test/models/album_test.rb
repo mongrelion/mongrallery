@@ -14,7 +14,7 @@ describe Album do
 
   # - Validations - #
   it 'requires name to be set' do
-    album = Fabricate.build :album, name: nil
+    album = Fabricate.build :album, :name => nil
     album.valid?.wont_equal true
     album.name = 'Some Album Name'
     album.valid?.must_equal true
@@ -27,7 +27,7 @@ describe Album do
 
   it 'sorts albums by name in ascendent order by default' do
     %w[ Oranges Strawberries Lemons Kiwis ].each do |name|
-      Album.create name: name
+      Album.create :name => name
     end
     Album.all.map(&:name).must_equal %w[ Kiwis Lemons Oranges Strawberries ]
   end
@@ -40,8 +40,8 @@ describe Album do
   end
 
   it 'knows when it is public' do
-    public_album  = Album.new public: true
-    private_album = Album.new public: false
+    public_album  = Album.new :public => true
+    private_album = Album.new :public => false
     public_album.is_public?.must_equal true
     private_album.is_public?.must_equal false
   end

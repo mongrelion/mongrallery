@@ -1,6 +1,6 @@
 module ApplicationHelper
   def session_links
-    content_tag :p, class: 'session navbar-text pull-right' do
+    content_tag :p, :class => 'session navbar-text pull-right' do
       if user_signed_in?
         raw(
           link_to(current_user.name, '#') +
@@ -15,23 +15,23 @@ module ApplicationHelper
 
   def flash_messages
     {
-      alert:  'alert',
-      notice:  'alert alert-success',
-      error:   'alert alert-error',
-      success: 'alert alert-success',
-      info:    'alert alert-info'
+      :alert   => 'alert',
+      :notice  => 'alert alert-success',
+      :error   => 'alert alert-error',
+      :success => 'alert alert-success',
+      :info    => 'alert alert-info'
     }.map do |key, val|
-      content_tag :div, flash[key], class: val if flash[key]
+      content_tag :div, flash[key], :class => val if flash[key]
     end.join.html_safe
   end
 
   def new_link(url, text = 'New', _options = {})
     options = {
-      class: 'btn btn-small'
+      :class => 'btn btn-small'
     }.merge _options
     link_to url, options do
       raw(
-        content_tag(:span, '', class: get_black_icon_class(:new)) +
+        content_tag(:span, '', :class => get_black_icon_class(:new)) +
         content_tag(:span, text)
       )
     end
@@ -39,12 +39,10 @@ module ApplicationHelper
 
   def back_link(url, text = 'Back', _options = {})
     url ||= :back
-    options = {
-      class: 'btn btn-small'
-    }.merge _options
+    options = { :class => 'btn btn-small' }.merge _options
     link_to url, options do
       raw(
-        content_tag(:span, '', class: get_black_icon_class(:back)) +
+        content_tag(:span, '', :class => get_black_icon_class(:back)) +
         content_tag(:span, text)
       )
     end
@@ -55,12 +53,10 @@ module ApplicationHelper
   end
 
   def edit_link(url, text = 'Edit', _options = {})
-    options = {
-      class: 'btn btn-small btn-inverse'
-    }.merge _options
+    options = { :class => 'btn btn-small btn-inverse' }.merge _options
     link_to url, options do
       raw(
-        content_tag(:span, '', class: get_white_icon_class(:edit)) +
+        content_tag(:span, '', :class => get_white_icon_class(:edit)) +
         content_tag(:span, text)
       )
     end
@@ -68,13 +64,13 @@ module ApplicationHelper
 
   def destroy_link(url, text = 'Destroy', _options = {})
     options = {
-      class: 'btn btn-small btn-danger',
-      method: :delete,
-      confirm: 'Are you sure?'
+      :class   => 'btn btn-small btn-danger',
+      :method  => :delete,
+      :confirm => 'Are you sure?'
     }.merge _options
     link_to url, options do
       raw(
-        content_tag(:span, '', class: get_white_icon_class(:destroy)) +
+        content_tag(:span, '', :class => get_white_icon_class(:destroy)) +
         content_tag(:span, text)
       )
     end

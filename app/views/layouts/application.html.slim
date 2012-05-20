@@ -15,7 +15,7 @@ html
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
-          div           = link_to 'Mongrallery', root_path, class: 'brand'
+          div           = link_to 'Mongrallery', root_path, :class => 'brand'
           .nav-collapse = render 'shared/topbar'
           .pull-right   = session_links
 

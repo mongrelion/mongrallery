@@ -9,16 +9,16 @@ describe "User sessions integration" do
     describe "Fail" do
       it "shows an error message when the email is wrong" do
         user = Fabricate(:user)
-        fill_in 'Email',    with: 'foo@bar.com'
-        fill_in 'Password', with: user.password
+        fill_in 'Email',    :with => 'foo@bar.com'
+        fill_in 'Password', :with => user.password
         click_on 'Sign in'
         page.text.must_include 'Invalid email or password.'
       end
 
       it "shows an error message when the password is wrong" do
         user = Fabricate(:user)
-        fill_in 'Email',    with: user.email
-        fill_in 'Password', with: 'w0rngp@ssw0rd'
+        fill_in 'Email',    :with => user.email
+        fill_in 'Password', :with => 'w0rngp@ssw0rd'
         click_on 'Sign in'
         page.text.must_include 'Invalid email or password.'
       end
@@ -27,8 +27,8 @@ describe "User sessions integration" do
     describe "Success" do
       before do
         user = Fabricate(:user)
-        fill_in 'Email',    with: user.email
-        fill_in 'Password', with: user.password
+        fill_in 'Email',    :with => user.email
+        fill_in 'Password', :with => user.password
         click_on 'Sign in'
       end
 
@@ -46,8 +46,8 @@ describe "User sessions integration" do
     before do
       user = Fabricate(:user)
       visit new_user_session_path
-      fill_in 'Email', with: user.email
-      fill_in 'Password', with: user.password
+      fill_in 'Email',    :with => user.email
+      fill_in 'Password', :with => user.password
       click_on 'Sign in'
     end
     it "shows a feedback message when logged out" do

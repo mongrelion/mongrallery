@@ -55,7 +55,7 @@ describe 'Pictures integration' do
   describe 'Create a new picture' do
     before do
       login Fabricate(:admin)
-      Fabricate(:album, name: 'Puerto Colombia')
+      Fabricate(:album, :name => 'Puerto Colombia')
       menu_click_on 'Pictures'
       click_on 'New Picture'
     end
@@ -63,8 +63,8 @@ describe 'Pictures integration' do
     it 'is created given the required information' do
       image = File.join Rails.root, 'test', 'support', 'files', 'sunset.jpg'
       attach_file 'Picture', image
-      select 'Puerto Colombia', from: 'Album'
-      fill_in 'Caption', with: 'Sunset'
+      select 'Puerto Colombia', :from => 'Album'
+      fill_in 'Caption', :with => 'Sunset'
       click_on 'Save'
       page.text.must_include 'Picture was successfully created.'
       page.text.must_include 'Puerto Colombia'
@@ -72,7 +72,7 @@ describe 'Pictures integration' do
     end
 
     it 'is not created when no picture is set' do
-      fill_in 'Caption', with: 'Some caption'
+      fill_in 'Caption', :with => 'Some caption'
       click_on 'Save'
       page.text.must_include "Picture can't be blank"
     end
@@ -94,7 +94,7 @@ describe 'Pictures integration' do
     end
 
     it 'updates its information' do
-      fill_in 'Caption', with: 'Taken in some random spot in the city'
+      fill_in 'Caption', :with => 'Taken in some random spot in the city'
       click_on 'Save'
       page.text.must_include 'Taken in some random spot in the city'
     end

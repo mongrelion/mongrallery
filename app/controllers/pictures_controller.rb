@@ -1,6 +1,6 @@
 class PicturesController < InheritedResources::Base
-  before_filter :authorize!,  except: [:index, :show]
-  before_filter :load_albums, except: [:index, :destroy]
+  before_filter :authorize!,  :except => [:index, :show]
+  before_filter :load_albums, :except => [:index, :destroy]
 
   private
 

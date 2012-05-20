@@ -34,7 +34,7 @@ describe 'Albums integration' do
       3.times { Fabricate(:private_album) }
       visit root_path
       click_on 'Albums'
-      page.has_css?('ul.albums li', count: 5).must_equal true
+      page.has_css?('ul.albums li', :count => 5).must_equal true
     end
 
     it 'shows all albums, public and private, when there is a logged in user' do
@@ -43,7 +43,7 @@ describe 'Albums integration' do
       login
       visit root_path
       click_on 'Albums'
-      page.has_css?('ul.albums li', count: 8).must_equal true
+      page.has_css?('ul.albums li', :count => 8).must_equal true
     end
   end
 
@@ -63,7 +63,7 @@ describe 'Albums integration' do
     end
 
     it 'does not show the action buttons when the logged in user is not an admin' do
-      album = Fabricate(:album, name: 'Summer 2012')
+      album = Fabricate(:album, :name => 'Summer 2012')
       login
       click_on 'Albums'
       page.text.wont_include 'Edit'
@@ -93,16 +93,16 @@ describe 'Albums integration' do
     end
 
     it 'is created by giving the proper information' do
-      fill_in  'Name',        with: 'Woodstock'
-      fill_in  'Description', with: 'Kick-arse music festival'
+      fill_in  'Name',        :with => 'Woodstock'
+      fill_in  'Description', :with => 'Kick-arse music festival'
       click_on 'Save'
       page.text.must_include 'Album was successfully created.'
       page.text.must_include 'Woodstock'
     end
 
     it 'is not created when no name is given' do
-      fill_in 'Name',        with: ''
-      fill_in 'Description', with: 'Some description'
+      fill_in 'Name',        :with => ''
+      fill_in 'Description', :with => 'Some description'
       click_on 'Save'
       page.text.must_include 'prohibited this album from being saved'
       page.text.must_include "Name can't be blank"

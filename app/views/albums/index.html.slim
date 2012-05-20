@@ -20,4 +20,4 @@ ul.breadcrumb
               i.name = album.name
             - if current_admin?
               = edit_link(edit_album_path(album))
-              = destroy_link(album, 'Destroy', class: 'btn btn-small btn-danger pull-right')
+              = destroy_link(album, 'Destroy', :class => 'btn btn-small btn-danger pull-right')

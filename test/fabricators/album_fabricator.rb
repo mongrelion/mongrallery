@@ -3,6 +3,6 @@ Fabricator(:album) do
   description { Faker::Lorem.paragraph }
 end
 
-Fabricator(:private_album, from: :album) do
+Fabricator(:private_album, :from => :album) do
   public false
 end
