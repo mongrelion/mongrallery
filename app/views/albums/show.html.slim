@@ -10,6 +10,7 @@ ul.breadcrumb
 .hero-unit
   p = @album.description
 
-= edit_link edit_album_path @album
-= destroy_link @album, 'Delete', confirm: 'Are you sure you want to delete this album? This will also delete all its pictures?'
+- if current_admin?
+  = edit_link edit_album_path @album
+  = destroy_link @album, 'Destroy', confirm: 'Are you sure you want to delete this album? This will also delete all its pictures?'
 = back_link albums_path

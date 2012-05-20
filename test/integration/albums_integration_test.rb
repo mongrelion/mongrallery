@@ -62,8 +62,28 @@ describe 'Albums integration' do
       page.text.wont_include 'Destroy'
     end
 
-    it 'does not show the action buttons when the logged in user is not an admin'
-    it 'shows the action buttons when the logged in user is an admin'
+    it 'does not show the action buttons when the logged in user is not an admin' do
+      album = Fabricate(:album, name: 'Summer 2012')
+      login
+      click_on 'Albums'
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+      page.find('ul.albums li a:first').click
+      current_path.must_equal album_path(album)
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+    end
+
+    it 'shows the action buttons when the logged in user is an admin' do
+      Fabricate(:album)
+      login Fabricate(:admin)
+      click_on 'Albums'
+      page.text.must_include 'Edit'
+      page.text.must_include 'Destroy'
+      page.find('ul.albums li a:first').click
+      page.text.must_include 'Edit'
+      page.text.must_include 'Destroy'
+    end
   end
 
   describe 'Create a new album' do
@@ -115,7 +135,7 @@ describe 'Albums integration' do
       login Fabricate(:admin)
       album = Fabricate(:album)
       visit album_path(album)
-      click_on 'Delete'
+      click_on 'Destroy'
     end
 
     it 'takes the user to the albums list' do
