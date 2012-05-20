@@ -6,6 +6,7 @@ describe 'Pictures integration' do
     it 'shows a link to the parent album if present' do
       album = Fabricate(:album, :name => 'Summer 2012')
       Fabricate(:picture, :album => album)
+      visit root_path
       click_on 'Pictures'
       page.find('ul.pictures li a:first').click
       page.text.must_include 'Summer 2012'
