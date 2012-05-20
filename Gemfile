@@ -35,6 +35,7 @@ group :test do
   gem 'fabrication'
   gem 'launchy'
   gem 'minitest'
+  gem 'rake'
 end
 
 group :production do

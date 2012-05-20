@@ -222,6 +222,7 @@ DEPENDENCIES
   pry
   puma
   rails (= 3.2.3)
+  rake
   sass-rails (~> 3.2.3)
   slim-rails
   sqlite3
