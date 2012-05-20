@@ -17,3 +17,6 @@
 # Ignore picture uploads folder
 /public/pictures
 /public/uploads
+
+# Ignore .env file
+/.env
