@@ -37,9 +37,30 @@ describe Picture do
     picture.slug.length.must_equal 32
   end
 
+  # - Scopes - #
+  it 'knows how to retrieve public pictures' do
+    public_picture1, public_picture2 = Fabricate(:picture), Fabricate(:picture)
+    private_picture = Fabricate(:picture, :album => Fabricate(:private_album))
+    Picture.public_pics.must_include public_picture1
+    Picture.public_pics.must_include public_picture2
+    Picture.public_pics.wont_include private_picture
+  end
+
   # - Instance Methods - #
   it "knows when it is an orphan" do
     picture = Fabricate(:picture, :album => nil)
     picture.is_orphan?.must_equal true
   end
+
+  it 'knows when it is a public picture' do
+    picture = Picture.new
+    picture.is_public?.must_equal true
+
+    picture = Fabricate(:picture, :album => Fabricate(:album))
+    picture.is_public?.must_equal true
+
+    picture = Fabricate(:picture, :album => Fabricate(:private_album))
+    picture.is_public?.must_equal false
+  end
+
 end

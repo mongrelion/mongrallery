@@ -7,6 +7,7 @@ class Picture < ActiveRecord::Base
 
   # - Scopes - #
   scope :orphan, where(:album_id => nil)
+  scope :public_pics, joins(:album).where('albums.public = ?', true)
 
   # - Callbacks - #
   before_create :generate_slug
@@ -20,6 +21,10 @@ class Picture < ActiveRecord::Base
   # - Instance Methods - #
   def is_orphan?
     album_id.blank?
+  end
+
+  def is_public?
+    album ? album.is_public? : true
   end
 
   private

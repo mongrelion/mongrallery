@@ -12,9 +12,30 @@ describe 'Pictures integration' do
       click_on 'Summer 2012'
       current_path.must_equal album_path(album)
     end
+
+    it 'does not allow to access a private picture to a guest user by any meanings' do
+      picture = Fabricate(:picture, :album => Fabricate(:private_album))
+      visit picture_path picture
+      page.text.must_include "The page you were looking for doesn't exist"
+    end
   end
 
   describe 'List' do
+    it 'does not show pictures from private albums for guest users' do
+      2.times { Fabricate(:picture) }
+      Fabricate(:picture, :album => Fabricate(:private_album))
+      click_on 'Pictures'
+      page.has_selector?('ul.pictures li', :count => 2).must_equal true
+    end
+
+    it 'shows a list of all the pictures for logged in users' do
+      3.times { Fabricate(:picture)                                      }
+      3.times { Fabricate(:picture, :album => Fabricate(:private_album)) }
+      login
+      click_on 'Pictures'
+      page.has_selector?('ul.pictures li', :count => 6).must_equal true
+    end
+
     it 'does not show "New Picture" button when no user is signed in' do
       menu_click_on 'Pictures'
       page.text.wont_include 'New Picture'

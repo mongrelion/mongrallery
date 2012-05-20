@@ -5,7 +5,7 @@ class AlbumsController < InheritedResources::Base
   def show
     @album = Album.find params[:id]
     unless user_signed_in?
-      render_404 unless @album.is_public?
+      not_found unless @album.is_public?
     end
   end
 
