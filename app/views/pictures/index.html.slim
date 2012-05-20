@@ -11,7 +11,7 @@ ul.breadcrumb
 .clearfix
 
 - if @pictures.any?
-  ul.thumbnails
+  ul.thumbnails.pictures
     - @pictures.each do |picture|
       li.span3.image
         = hidden_field_tag :title, picture_caption(picture)

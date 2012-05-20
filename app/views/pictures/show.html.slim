@@ -21,5 +21,5 @@ p = link_to image_tag(@picture.pic.url), @picture.pic.url
 
 - if current_admin?
   = edit_link edit_picture_path(@picture)
-  = destroy_link @picture, 'Delete'
+  = destroy_link @picture, 'Destroy'
 = back_link pictures_path

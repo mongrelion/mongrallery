@@ -19,8 +19,37 @@ describe 'Pictures integration' do
       page.text.must_include 'New Picture'
     end
 
-    it 'doesn not show action links for pictures when there is no logged in user'
-    it 'doesn not show action links for pictures when the logged in user is not an admin'
+    it 'does not show action links for pictures when there is no logged in user' do
+      Fabricate(:picture)
+      click_on 'Pictures'
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+      page.find('ul.pictures li a:first').click
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+    end
+
+    it 'does not show action links for pictures when the logged in user is not an admin' do
+      Fabricate(:picture)
+      login
+      click_on 'Pictures'
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+      page.find('ul.pictures li a:first').click
+      page.text.wont_include 'Edit'
+      page.text.wont_include 'Destroy'
+    end
+
+    it 'shows action links for pictures when the logged in user is an admin' do
+      Fabricate(:picture)
+      login Fabricate(:admin)
+      click_on 'Pictures'
+      page.text.must_include 'Edit'
+      page.text.must_include 'Destroy'
+      page.find('ul.pictures li a:first').click
+      page.text.must_include 'Edit'
+      page.text.must_include 'Destroy'
+    end
   end
 
   describe 'Create a new picture' do
@@ -75,7 +104,7 @@ describe 'Pictures integration' do
     before do
       login Fabricate(:admin)
       visit picture_path(Fabricate(:picture))
-      click_on 'Delete'
+      click_on 'Destroy'
     end
 
     it 'shows a feedback message' do
